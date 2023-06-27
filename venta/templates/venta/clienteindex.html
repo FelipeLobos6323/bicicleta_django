@@ -1,12 +1,11 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biker Store</title>
+    <title>Menu ADMIN</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,800&display=swap" rel="stylesheet">
@@ -16,19 +15,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     
-    <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/clienteindex.css' %}">
     
 </head>
-
 <body>
-  
+
    <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg ">
+   <nav class="navbar navbar-expand-lg ">
     <a class="navbar-brand" href="#">
       
     </a>
     <div class="navbar-brand">
-      <h1 class="titulo-biker-store" >Biker Store
+      <a href={% url 'index' %}><h1 class="titulo-biker-store" >Biker Store
         
       </h1>
     </div>
@@ -41,10 +39,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto ">
         <li class="nav-item active">
-          <a class="nav-link " href={% url 'cascos' %} tabindex="-1" aria-disabled="true">Cascos</a>
+          <a class="nav-link " href={% url 'cascos' %} tabindex="-1" aria-disabled="true">Accesorios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href={% url 'bicicletass' %} tabindex="-1" aria-disabled="true">Bicicletas</a>
+          <a class="nav-link" href={% url 'bicicletass' %}>Bicicletas</a>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href={% url 'repuesto' %}>Repuestos
@@ -68,26 +66,13 @@
         </li>
 
         <li class="nav-item">
-          {% if user.username == 'admin' %}
           <a class="nav-link " href={% url 'clienteindex' %} tabindex="-1" aria-disabled="true">Agregar Cliente</a>
-          {% endif %}
+          
         </li>
-      
+        
       </ul>
 
-
-      <div>
-        <a href={% url 'login' %} class="btn btn-primary"><button></button>Iniciar Sesión</a>
-        
-      </div>
-
-      
-
-
-
     </div>
-
-
 
             <!-- Button to Open the Modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -120,69 +105,74 @@
   </div>
 </div>
 
-
+<a class="btn btn-primary" href={% url 'logout' %}>Cerrar sesion</a> 
     
   </nav>
+  <h3>ADMINISTRADOR {{usu}}</h3>
+  {% if user.is_authenticated %}
+  {{user.username}}
+{% else %}
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
 
 
 
-    </header>
-   
+    
+    
+    <br>
+    <button class="agregar-btn"type="button">
+        <a href="{% url 'clientesAdd' %}">Agregar</a>
+    </button>
     <br>
 
-<!-- Carrusel -->
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-    <!-- Indicators/dots -->
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    <div id="id_mensaje">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif%}
     </div>
+    <br>
+    <table>
+        {% if clientes %}
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Género</th>
+            <th>Eliminar</th>
+            <th>Modificar</th>
+            {% for tmp in clientes %}
+                <tr>
+                    <td>{{tmp.rut}}</td>
+                    <td>{{tmp.nombre}}</td>
+                    <td>{{tmp.apellido_paterno}}</td>
+                    <td>{{tmp.id_genero}}</td>
+                    <td><a href="{% url 'clientes_del' pk=tmp.rut %}">Eliminar</a></td>
+                    <td><a href="{% url 'clientes_findEdit' pk=tmp.rut %}">Modificar</a></td>
+                </tr>
+            {% endfor%}
+        {% endif%}
+    </table>
+    <br>
+    <a class="lista-generos" href="{% url 'genero'%}">Lista Generos</a>
+    <br>
+
+
+    <br>
     
-    <!-- paginas cambiantes/carrusel -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'media/ca1.jpg'%}" alt="Ciclista 1" class="d-block" style="width:100%">
-        
-  
-        <div class="carousel-caption">
-            <h1>Experiencia </h1>
-            <p>La experiencia no tiene valor ético alguno, es simplemente el nombre que damos a nuestros errores...</p>
-             </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'media/ca2.jpg'%}" alt="Ciclista 2" class="d-block" style="width:100%">
-        <div class="carousel-caption">
-            <h1>Esfuerzo </h1>
-            <p>El éxito depende del esfuerzo</p>
-             </div>
-      </div>
-
-      <div class="carousel-item">
-        <img src="{% static 'media/ca3.jpg'%}" alt="Ciclista 3" class="d-block" style="width: 100%">
-        <div class="carousel-caption">
-            <h1>Perseverancia </h1>
-            <p>Inténtalo y fracasa, pero no fracases en intentarlo.</p>
-             </div>
-      </div>
-    </div>
+    <br>
     
-    <!-- izq y dercha controles y iconos -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  
-
-  </body>
-  </html>
-
-<!-- pie de página -->
-
-<!-- Footer -->
+    <br>
+    
+    <br>
+    
+    <br>
+    
+    <br>
+    
+    <br>
+    
+    <br>
+    
+    <!-- Footer -->
 <footer class="bg-dark text-center text-white">
   <!-- Grid container -->
   <div class="container p-4">
@@ -226,28 +216,19 @@
         <!--Grid row-->
         <div class="row d-flex justify-content-center">
           <!--Grid column-->
-          <div class="col-auto">
-            <p class="pt-2">
-              <strong>Ingresar email para obtener noticias y descuentos</strong>
-            </p>
-          </div>
+          
           <!--Grid column-->
 
           <!--Grid column-->
           <div class="col-md-5 col-12">
             <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-              <input type="email" id="form5Example21" class="form-control" />
-              <label class="form-label" for="form5Example21">Email</label>
-            </div>
-          </div>
+          
           <!--Grid column-->
 
           <!--Grid column-->
           <div class="col-auto">
             <!-- Submit button -->
-            <button type="submit" class="btn btn-outline-light mb-4">
-              Subscribir
+          
             </button>
           </div>
           <!--Grid column-->
@@ -294,19 +275,5 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 </body>
-
-
-
 </html>

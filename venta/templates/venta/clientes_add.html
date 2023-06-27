@@ -1,0 +1,62 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+<h3>Agregar Cliente</h3>
+<br>
+<form action="{% url 'clientesAdd' %}" method="POST">
+    {% csrf_token%}
+    <pre>Rut: <input type="text" name = "rut"></pre>
+    <pre>Nombre: <input type="text" name = "nombre"></pre>
+    <pre>Apellido Paterno: <input type="text" name = "apePat"></pre>
+    <pre>Apellido Materno: <input type="text" name = "apeMat"></pre>
+    <pre>Fecha de Nacimiento:<input type="date" name = "fechaNac"></pre>
+    <pre>Género: <select name="genero">
+        {% for tmp in generos %}
+            <option value="{{tmp.id_genero}}">{{tmp.genero}}</option>
+        {% endfor %}
+    </select></pre>
+    <pre>Teléfono:<input type="text" name = "telefono"></pre>
+    <pre>Email:<input type="mail" name = "email"></pre>
+    <pre>Dirección:<input type="text" name = "direccion"></pre>
+    <input type="submit" value="Agregar">
+</form>
+<br>
+<div id="id_mensaje">
+    {% if mensaje %}
+        {{mensaje}}
+    {% endif%}
+</div>
+
+<a href="{% url 'clienteindex' %}">Volver</a>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

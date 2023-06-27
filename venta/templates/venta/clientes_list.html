@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>bienvenidos a Django</h3>
+    
+    <br>
+    <button type="button">
+        <a href="{% url 'clientesAdd' %}">Agregar</a>
+    </button>
+    <br>
+
+    <div id="id_mensaje">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif%}
+    </div>
+    <br>
+    <table>
+        {% if clientes %}
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Género</th>
+            <th>Eliminar</th>
+            <th>Modificar</th>
+            {% for tmp in clientes %}
+                <tr>
+                    <td>{{tmp.rut}}</td>
+                    <td>{{tmp.nombre}}</td>
+                    <td>{{tmp.apellido_paterno}}</td>
+                    <td>{{tmp.id_genero}}</td>
+                    <td><a href="">Eliminar</a></td>
+                    <td><a href="">Modificar</a></td>
+                </tr>
+            {% endfor%}
+        {% endif%}
+    </table>
+    <br>
+    <a href="{% url 'genero'%}">lista generos</a>
+</body>
+</html>

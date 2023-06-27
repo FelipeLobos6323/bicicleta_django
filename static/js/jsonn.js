@@ -1,22 +1,12 @@
-
-fetch("products.json")
-.then(function(response){
-	return response.json();
-})
-.then(function(products){
-	let placeholder = document.querySelector("#data-output");
-	let out = "";
-	for(let product of products){
-		out += `
-			<tr>
-				<td> <img src='${product.image}'> </td>
-				<td>${product.name}</td>
-				<td>${product.price}</td>
-				<td>${product.inventory}</td>
-				<td>${product.productCode}</td>
-			</tr>
-		`;
-	}
-
-	placeholder.innerHTML = out;
+$(document).ready(function(){
+    $("#enviar").click(function(){
+        $.get("https://bicicleta-388ef-default-rtdb.firebaseio.com/",
+        function(data){
+            $.each(data.categories,function(i,item){
+                $("#categorias").append("<tr><td>" + item.idCategory + "</td><td>" + 
+                item.strCategory + "</td><td><img src='" + item.strCategoryThumb+
+                "'></td><td>" + item.strCategoryDescription+"</td></tr>");
+            });
+        });
+    });
 });

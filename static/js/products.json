@@ -1,0 +1,67 @@
+[
+	{
+		"id": 1,
+		"image": "imagenes/bike-1.jpeg",
+		"name": "Orient Vita Pro 28",
+		"price": "284.000",
+		"inventory": 4,
+		"productCode": "K203"
+	},
+	{
+		"id": 2,
+		"image": "imagenes/bike-2.jpeg",
+		"name": "Orient S-400 26",
+		"price": "198.000",
+		"inventory": 14,
+		"productCode": "K433"
+	},
+	{
+		"id": 3,
+		"image": "imagenes/bicicleta-2.png",
+		"name": "Bullet Bora 20",
+		"price": "350.000",
+		"inventory": 7,
+		"productCode": "K012"
+	},
+	{
+		"id": 8,
+		"image": "imagenes/json/ruedas1.png",
+		"name": "Set Rueda Novatec Enduro DIABLO XL29 32H BOOST",
+		"price": "419.000",
+		"inventory": 5,
+		"productCode": "C239"
+	},
+	{
+		"id": 9,
+		"image": "imagenes/json/silla1.png",
+		"name": "Sillin DDK Modelo 300K",
+		"price": "7.590",
+		"inventory": 25,
+		"productCode": "A125"
+	},
+	{
+		"id": 10,
+		"image": "imagenes/json/cadera1.png",
+		"name": "Bullet Bora 20\"",
+		"price": "350.00",
+		"inventory": 7,
+		"productCode": "K012"
+	},
+	{
+		"id": 11,
+		"image": "imagenes/json/casco1.png",
+		"name": "Casco Bicicleta Rampage Pro Carbon Mips™ Negro Fox",
+		"price": "499.990",
+		"inventory": 0,
+		"productCode": "K1234"
+	},
+	{
+		"id": 12,
+		"image": "imagenes/json/casco2.png",
+		"name": "Casco Bicicleta Rampage Comp Camo Fox",
+		"price": "299.990",
+		"inventory": 10,
+		"productCode": "K2034"
+	}
+	
+]
